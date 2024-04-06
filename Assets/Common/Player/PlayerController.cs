@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour
@@ -51,8 +50,6 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private Vector3 _standingCenter = new Vector3(0f, 0f, 0f);
     private bool _isCrouching;
 
-
-
     private void Awake()
     {
         _playerCamera = GetComponentInChildren<Camera>();
@@ -68,6 +65,7 @@ public class PlayerController : MonoBehaviour
         MovePlayerCamera();
         Jump();
         Crouch();
+        
     }
 
     private void HandleMovementInput()
@@ -161,5 +159,9 @@ public class PlayerController : MonoBehaviour
         _characterController.Move(_moveDirection * Time.deltaTime);
     }
 
-
+    private void UseItem()
+    {
+        
+    }
+    
 }
