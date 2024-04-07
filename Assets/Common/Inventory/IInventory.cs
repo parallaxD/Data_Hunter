@@ -1,13 +1,26 @@
-﻿using System.Collections.Generic;
+using System;
+using System.Collections.Generic;
+using Common.Interactable.Item;
+using Common.Item;
 
 namespace Common.Inventory
 {
     public interface IInventory
     {
-        void put(IItem item);
-        void put(IItem item, int index);
-        void remove(int index);
-        List<IItem> getItems();
-        int getSize();
+        event Action<ItemData> ItemAdded;
+        event Action<ItemData> ItemChanged;
+        event Action<ItemData> ItemRemoved;
+
+        List<ItemData> GetAll();
+        ItemData Get(int slot);
+        
+        int AddToSlot(IItem item);
+        void AddToSlot(IItem item, int slot);
+        
+        void Remove(int slot);
+
+        int GetSize();
+
+        void MarkChanged(ItemData item);
     }
 }
