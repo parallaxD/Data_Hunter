@@ -15,6 +15,11 @@ namespace Common.Interactable.Item
         public int MinAmount => minAmount;
         public int MaxAmount => maxAmount;
 
+        private bool Equals(ItemType other)
+        {
+            return base.Equals(other) && Id.Equals(other.Id);
+        }
+
         public override bool Equals(object obj)
         {
             if (ReferenceEquals(null, obj)) return false;

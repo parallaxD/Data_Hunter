@@ -14,16 +14,16 @@ namespace Common.Inventory
         public event Action<ItemData> ItemChanged;
         public event Action<ItemData> ItemRemoved;
         
-        private readonly List<ItemData> _slots = new ();
+        protected readonly List<ItemData> Slots = new ();
 
         public List<ItemData> GetAll()
         {
-            return new List<ItemData>(_slots);
+            return new List<ItemData>(Slots);
         }
 
         public ItemData Get(int slot)
         {
-            return _slots[slot];
+            return Slots[slot];
         }
 
         public int AddToSlot(IItem item)
@@ -31,10 +31,10 @@ namespace Common.Inventory
             CheckInventoryIsFull();
             
             var itemData = new ItemData(item, this);
-            _slots.Add(itemData);
+            Slots.Add(itemData);
             
             ItemAdded?.Invoke(itemData);
-            return _slots.Count - 1;
+            return Slots.Count - 1;
         }
 
         public void AddToSlot(IItem item, int slot)
@@ -42,21 +42,21 @@ namespace Common.Inventory
             CheckInventoryIsFull();
             
             var itemData = new ItemData(item, this);
-            _slots[slot] = itemData;
+            Slots[slot] = itemData;
             ItemAdded?.Invoke(itemData);
         }
 
         public void Remove(int slot)
         {
-            var itemData = _slots[slot];
+            var itemData = Slots[slot];
             
-            _slots.RemoveAt(slot);
+            Slots.RemoveAt(slot);
             ItemRemoved?.Invoke(itemData);
         }
 
         public int GetSize()
         {
-            return _slots.Count;
+            return Slots.Count;
         }
 
         public void MarkChanged(ItemData item)
@@ -66,7 +66,7 @@ namespace Common.Inventory
 
         private void CheckInventoryIsFull()
         {
-            if (_slots.Count >= size)
+            if (Slots.Count >= size)
                 throw new IndexOutOfRangeException("Inventory is full");
         }
     }

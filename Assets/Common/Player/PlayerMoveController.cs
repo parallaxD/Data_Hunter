@@ -53,7 +53,7 @@ public class PlayerMoveController : MonoBehaviour
     private void Awake()
     {
         _playerCamera = GetComponentInChildren<Camera>();
-        _characterController = GetComponent<CharacterController>();
+        _characterController = GetComponentInParent<CharacterController>();
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
     }
@@ -89,9 +89,9 @@ public class PlayerMoveController : MonoBehaviour
     private void MovePlayerCamera()
     {
         HandleMouseInput();
-
+       
         _playerCamera.transform.localRotation = Quaternion.Euler(_rotationX, 0f, 0f);
-        transform.rotation *= Quaternion.Euler(0, Input.GetAxis("Mouse X") * _mouseSensivityX, 0);
+        _characterController.transform.rotation *= Quaternion.Euler(0, Input.GetAxis("Mouse X") * _mouseSensivityX, 0);
     }
 
     private void HandleJump()

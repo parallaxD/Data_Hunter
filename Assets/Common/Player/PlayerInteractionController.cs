@@ -1,5 +1,3 @@
-using System;
-using Common.Inventory;
 using Common.Item;
 using UnityEngine;
 using UnityEngine.UI;
@@ -14,9 +12,10 @@ namespace Common.Player
         [Header("Pointers")]
         [SerializeField] private Sprite normalPointer;
         [SerializeField] private Sprite usePointer;
-        
+        [SerializeField] private double maxInteractionDistance = 3d;
+
         private bool IsInteracted => Input.GetKeyDown(_use);
-        
+
         private Transform _camera;
         private Transform _inventory;
         private Image _pointer;
@@ -31,31 +30,32 @@ namespace Common.Player
 
         private void Update()
         {
-            findInteractable();
+            TryInteract();
         }
         
-        private void interact()
+        private void TryInteract()
         {
-            
+            var interactable = FindInteractable();
+            if (interactable != null && IsInteracted)
+                interactable.GetInteractionHandler(_inventory.gameObject).Interact();
         }
 
-        private void findInteractable()
+        private IInteractable FindInteractable()
         {
             var ray = new Ray(_camera.position, _camera.forward);
             if (!Physics.Raycast(ray, out var hit)) 
-                return;
+                return null;
+            
             
             var isInteractable = hit.transform.TryGetComponent<IInteractable>(out var interactable);
-            if (isInteractable)
+            if (hit.distance < maxInteractionDistance && isInteractable)
             {
                 _pointer.sprite = usePointer;
-                if (IsInteracted)
-                    interactable.GetInteractionHandler(_inventory.gameObject).Interact();
+                return interactable;
             }
-            else
-            {
-                _pointer.sprite = normalPointer;
-            }
+            
+            _pointer.sprite = normalPointer;
+            return null;
         }
     }
 }
