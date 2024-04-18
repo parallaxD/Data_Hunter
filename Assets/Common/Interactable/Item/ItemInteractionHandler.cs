@@ -1,13 +1,12 @@
-using Common.Inventory;
 using Common.Item;
+using Common.Storage;
 using UnityEngine;
 
 namespace Common.Interactable.Item
 {
     public class ItemInteractionHandler : IInteractionHandler
     {
-
-        private GameObject _who;
+        private readonly GameObject _who;
         private readonly Item _item;
 
         public ItemInteractionHandler(GameObject who, Item item)
@@ -23,7 +22,6 @@ namespace Common.Interactable.Item
                 return;
 
             inventory.AddToSlot(_item);
-            Object.Destroy(_item.gameObject);
         }
     }
 }

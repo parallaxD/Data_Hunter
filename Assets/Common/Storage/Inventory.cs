@@ -1,20 +1,26 @@
 using System;
 using System.Collections.Generic;
 using Common.Interactable.Item;
-using Common.Item;
 using UnityEngine;
 
-namespace Common.Inventory
+namespace Common.Storage
 {
     public class Inventory : MonoBehaviour, IInventory
     {
-        [SerializeField] [Range(1, 1000)] private int size = 1; 
+        [SerializeField] [Range(1, 100)] protected int size = 1; 
         
         public event Action<ItemData> ItemAdded;
         public event Action<ItemData> ItemChanged;
         public event Action<ItemData> ItemRemoved;
         
         protected readonly List<ItemData> Slots = new ();
+
+        protected GameObject ItemStore;
+        
+        private void Start()
+        {
+            InitializeItemStore();
+        }
 
         public List<ItemData> GetAll()
         {
@@ -32,6 +38,7 @@ namespace Common.Inventory
             
             var itemData = new ItemData(item, this);
             Slots.Add(itemData);
+            PutItemToItemStore(item);
             
             ItemAdded?.Invoke(itemData);
             return Slots.Count - 1;
@@ -43,6 +50,8 @@ namespace Common.Inventory
             
             var itemData = new ItemData(item, this);
             Slots[slot] = itemData;
+            PutItemToItemStore(item);
+            
             ItemAdded?.Invoke(itemData);
         }
 
@@ -68,6 +77,20 @@ namespace Common.Inventory
         {
             if (Slots.Count >= size)
                 throw new IndexOutOfRangeException("Inventory is full");
+        }
+
+        private void PutItemToItemStore(IItem item)
+        {
+            if (ItemStore == null)
+                InitializeItemStore();
+            
+            item.transform.SetParent(ItemStore.transform);
+            item.gameObject.SetActive(false);
+        }
+
+        private void InitializeItemStore()
+        {
+            ItemStore = new GameObject("ItemStore");
         }
     }
 }

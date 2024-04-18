@@ -52,20 +52,17 @@ public class PlayerMoveController : MonoBehaviour
 
     private void Awake()
     {
-        _playerCamera = GetComponentInChildren<Camera>();
-        _characterController = GetComponentInParent<CharacterController>();
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
     }
 
     private void Update()
     {
-        print("Player Is Sprinting: " + IsSprinting);
+        // print("Player Is Sprinting: " + IsSprinting);
         MovePlayer();
         MovePlayerCamera();
         Jump();
         Crouch();
-        
     }
 
     private void HandleMovementInput()

@@ -1,3 +1,4 @@
+using Common.Interactable;
 using Common.Item;
 using UnityEngine;
 using UnityEngine.UI;
@@ -14,19 +15,12 @@ namespace Common.Player
         [SerializeField] private Sprite usePointer;
         [SerializeField] private double maxInteractionDistance = 3d;
 
+        [Header("Components")]
+        [SerializeField] private Camera playerCamera;
+        [SerializeField] private Storage.Inventory inventory;
+        [SerializeField] private Image pointer;
+        
         private bool IsInteracted => Input.GetKeyDown(_use);
-
-        private Transform _camera;
-        private Transform _inventory;
-        private Image _pointer;
-
-        private void Start()
-        {
-            var parent = transform.parent;
-            _camera = parent.GetComponentInChildren<Camera>().transform;
-            _inventory = parent.Find("PlayerInventory");
-            _pointer = transform.Find("Canvas").Find("Pointer").GetComponent<Image>();
-        }
 
         private void Update()
         {
@@ -37,12 +31,13 @@ namespace Common.Player
         {
             var interactable = FindInteractable();
             if (interactable != null && IsInteracted)
-                interactable.GetInteractionHandler(_inventory.gameObject).Interact();
+                interactable.GetInteractionHandler(inventory.gameObject).Interact();
         }
 
         private IInteractable FindInteractable()
         {
-            var ray = new Ray(_camera.position, _camera.forward);
+            var cameraTransform = playerCamera.transform;
+            var ray = new Ray(cameraTransform.position, cameraTransform.forward);
             if (!Physics.Raycast(ray, out var hit)) 
                 return null;
             
@@ -50,11 +45,11 @@ namespace Common.Player
             var isInteractable = hit.transform.TryGetComponent<IInteractable>(out var interactable);
             if (hit.distance < maxInteractionDistance && isInteractable)
             {
-                _pointer.sprite = usePointer;
+                pointer.sprite = usePointer;
                 return interactable;
             }
             
-            _pointer.sprite = normalPointer;
+            pointer.sprite = normalPointer;
             return null;
         }
     }

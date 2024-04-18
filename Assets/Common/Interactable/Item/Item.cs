@@ -1,7 +1,6 @@
 using System;
 using Common.Item;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 namespace Common.Interactable.Item
 {
@@ -9,8 +8,7 @@ namespace Common.Interactable.Item
     {
         [SerializeField] private ItemType type;
         [SerializeField] private int amount = 1;
-        
-        
+
         private int Amount
         {
             get => amount;
@@ -34,6 +32,11 @@ namespace Common.Interactable.Item
         public IInteractionHandler GetInteractionHandler(GameObject who)
         {
             return new ItemInteractionHandler(who, this);
+        }
+
+        public Transform GetTransform()
+        {
+            return transform;
         }
     }
 }

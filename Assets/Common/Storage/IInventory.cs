@@ -1,11 +1,11 @@
 using System;
 using System.Collections.Generic;
 using Common.Interactable.Item;
-using Common.Item;
+using Common.Util;
 
-namespace Common.Inventory
+namespace Common.Storage
 {
-    public interface IInventory
+    public interface IInventory : IUnityObject
     {
         event Action<ItemData> ItemAdded;
         event Action<ItemData> ItemChanged;
@@ -13,7 +13,7 @@ namespace Common.Inventory
 
         List<ItemData> GetAll();
         ItemData Get(int slot);
-        
+
         int AddToSlot(IItem item);
         void AddToSlot(IItem item, int slot);
         
