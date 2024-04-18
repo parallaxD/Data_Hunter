@@ -6,6 +6,7 @@ public class PlayerMoveController : MonoBehaviour
     private bool CanJump => Input.GetKeyDown(_jumpKey) && _characterController.isGrounded;
     private bool IsSprinting => _canSprint && Input.GetKey(_sprintKey);
 
+    private bool CanDash => _canDash && !IsSprinting && Input.GetKeyDown(_dashKey);
     private bool CanCrouch => Input.GetKeyDown(_crouchKey) && _characterController.isGrounded;
 
     [Header("MovementParameters")]
@@ -23,10 +24,12 @@ public class PlayerMoveController : MonoBehaviour
 
     private float _rotationX;
 
+
     [Header("Controls")]
     [SerializeField] private KeyCode _jumpKey = KeyCode.Space;
     [SerializeField] private KeyCode _sprintKey = KeyCode.LeftShift;
     [SerializeField] private KeyCode _crouchKey = KeyCode.LeftControl;
+    [SerializeField] private KeyCode _dashKey = KeyCode.LeftShift;
 
     [Range(0,10)]
     [SerializeField] private float _mouseSensivityY;
@@ -38,9 +41,15 @@ public class PlayerMoveController : MonoBehaviour
     [Header("AbilityParameters")]
     [SerializeField] private bool _canJump;
     [SerializeField] private bool _canSprint;
+    [SerializeField] private bool _canDash;
 
     [Header("jumpingParameters")]
     [SerializeField] private float _jumpForce;
+
+    [Header("DashParameters")]
+    [SerializeField] private float _dashTime = 0.1f;
+    [SerializeField] private float _dashCooldownTime;
+    [SerializeField] private float _dashSpeed = 5f;
 
     [Header("CrouchParameters")]
     [SerializeField] private float _crouchHeight = 0.5f;
@@ -50,12 +59,13 @@ public class PlayerMoveController : MonoBehaviour
     [SerializeField] private Vector3 _standingCenter = new Vector3(0f, 0f, 0f);
     private bool _isCrouching;
 
-    private void Awake()
+    private void Start()
     {
         _playerCamera = GetComponentInChildren<Camera>();
         _characterController = GetComponentInParent<CharacterController>();
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
+        _characterController.detectCollisions = true;
     }
 
     private void Update()
@@ -65,12 +75,12 @@ public class PlayerMoveController : MonoBehaviour
         MovePlayerCamera();
         Jump();
         Crouch();
-        
+        Dash();
     }
 
     private void HandleMovementInput()
     {
-        _currentInput = new Vector2((_isCrouching ? _crouchSpeed : IsSprinting ? _sprintSpeed : _moveSpeed) * Input.GetAxis("Vertical"), _moveSpeed * Input.GetAxis("Horizontal"));
+        _currentInput = new Vector2((_isCrouching ? _crouchSpeed : IsSprinting ? _sprintSpeed : _moveSpeed) * Input.GetAxis("Vertical"), (_isCrouching ? _crouchSpeed : IsSprinting ? _sprintSpeed : _moveSpeed) * Input.GetAxis("Horizontal"));
 
         float moveDirectionY = _moveDirection.y;
 
@@ -106,7 +116,7 @@ public class PlayerMoveController : MonoBehaviour
 
     private IEnumerator CrouchStand()
     {
-        if (_isCrouching && Physics.Raycast(_playerCamera.transform.position, Vector3.up, 1f));
+        if (_isCrouching && Physics.Raycast(_playerCamera.transform.position, Vector3.up, 1f))
         {
             yield break;
         }
@@ -147,8 +157,6 @@ public class PlayerMoveController : MonoBehaviour
         }
     }
 
-
-
     private void MovePlayer()
     {
         HandleMovementInput();
@@ -163,5 +171,38 @@ public class PlayerMoveController : MonoBehaviour
     {
         
     }
-    
+
+    private IEnumerator DashProcess()
+    {
+        float startTime = Time.time;
+
+        while(Time.time < startTime + _dashTime)
+        {
+            _characterController.Move(_moveDirection * _dashSpeed * Time.deltaTime);
+            yield return null;
+        }
+
+        StartCoroutine(DashCooldown());
+    }
+
+    private void Dash()
+    {
+        if (CanDash)
+        {
+            HandleDash();
+        }
+    }
+
+    private void HandleDash()
+    {
+        StartCoroutine(DashProcess());
+    }
+
+
+    private IEnumerator DashCooldown()
+    {
+        _canDash = false;
+        yield return new WaitForSeconds(_dashCooldownTime);
+        _canDash = true;
+    } 
 }
