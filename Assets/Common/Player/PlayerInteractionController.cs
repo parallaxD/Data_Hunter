@@ -1,4 +1,7 @@
+using Common.Interactable;
+using Common.Interactable.Item;
 using Common.Item;
+using Common.Storage;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -14,35 +17,30 @@ namespace Common.Player
         [SerializeField] private Sprite usePointer;
         [SerializeField] private double maxInteractionDistance = 3d;
 
+        [Header("Components")]
+        [SerializeField] private Camera playerCamera;
+        [SerializeField] private EntityInventory inventory;
+        [SerializeField] private Image pointer;
+        
         private bool IsInteracted => Input.GetKeyDown(_use);
-
-        private Transform _camera;
-        private Transform _inventory;
-        private Image _pointer;
-
-        private void Start()
-        {
-            var parent = transform.parent;
-            _camera = parent.GetComponentInChildren<Camera>().transform;
-            _inventory = parent.Find("PlayerInventory");
-            _pointer = transform.Find("Canvas").Find("Pointer").GetComponent<Image>();
-        }
 
         private void Update()
         {
             TryInteract();
+            TryUseItem();
         }
         
         private void TryInteract()
         {
             var interactable = FindInteractable();
             if (interactable != null && IsInteracted)
-                interactable.GetInteractionHandler(_inventory.gameObject).Interact();
+                interactable.GetInteractionHandler(inventory.gameObject).Interact();
         }
 
         private IInteractable FindInteractable()
         {
-            var ray = new Ray(_camera.position, _camera.forward);
+            var cameraTransform = playerCamera.transform;
+            var ray = new Ray(cameraTransform.position, cameraTransform.forward);
             if (!Physics.Raycast(ray, out var hit)) 
                 return null;
             
@@ -50,12 +48,28 @@ namespace Common.Player
             var isInteractable = hit.transform.TryGetComponent<IInteractable>(out var interactable);
             if (hit.distance < maxInteractionDistance && isInteractable)
             {
-                _pointer.sprite = usePointer;
+                pointer.sprite = usePointer;
                 return interactable;
             }
             
-            _pointer.sprite = normalPointer;
+            pointer.sprite = normalPointer;
             return null;
+        }
+
+        private void TryUseItem()
+        {
+            if (!Input.GetMouseButtonUp(0))
+                return;
+
+            var item = inventory.GetSelected();
+            if (item == null)
+                return;
+            
+            var isUsable = item.Item.gameObject.TryGetComponent(out IUsableItem usableItem);
+            if (!isUsable)
+                return;
+            
+            usableItem.Use();
         }
     }
 }

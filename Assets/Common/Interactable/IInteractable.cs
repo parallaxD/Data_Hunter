@@ -1,9 +1,11 @@
 
+using Common.Item;
+using Common.Util;
 using UnityEngine;
 
-namespace Common.Item
+namespace Common.Interactable
 {
-    public interface IInteractable
+    public interface IInteractable : IUnityObject
     {
         IInteractionHandler GetInteractionHandler(GameObject who);
     }
