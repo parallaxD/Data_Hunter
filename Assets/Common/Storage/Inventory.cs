@@ -7,7 +7,8 @@ namespace Common.Storage
 {
     public class Inventory : MonoBehaviour, IInventory
     {
-        [SerializeField] [Range(1, 100)] protected int size = 1; 
+        [SerializeField] [Range(1, 100)] protected int size = 1;
+        protected int _itemCount = 0;
         
         public event Action<ItemData> ItemAdded;
         public event Action<ItemData> ItemChanged;
@@ -39,6 +40,7 @@ namespace Common.Storage
             var itemData = new ItemData(item, this);
             Slots.Add(itemData);
             PutItemToItemStore(item);
+            _itemCount++;
             
             ItemAdded?.Invoke(itemData);
             return Slots.Count - 1;
@@ -51,7 +53,7 @@ namespace Common.Storage
             var itemData = new ItemData(item, this);
             Slots[slot] = itemData;
             PutItemToItemStore(item);
-            
+            _itemCount++;
             ItemAdded?.Invoke(itemData);
         }
 
@@ -60,12 +62,18 @@ namespace Common.Storage
             var itemData = Slots[slot];
             
             Slots.RemoveAt(slot);
+            _itemCount--;
             ItemRemoved?.Invoke(itemData);
         }
 
         public int GetSize()
         {
             return Slots.Count;
+        }
+
+        public int GetItemCount()
+        {
+            throw new NotImplementedException();
         }
 
         public void MarkChanged(ItemData item)

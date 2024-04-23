@@ -21,7 +21,7 @@ namespace Common.Storage
 
         public ItemData GetSelected()
         {
-            return Slots[_selectedSlot];
+            return _itemCount == 0 ? null : Slots[_selectedSlot];
         }
 
         public int GetSelectedSlot()

@@ -1,5 +1,7 @@
 using Common.Interactable;
+using Common.Interactable.Item;
 using Common.Item;
+using Common.Storage;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -17,7 +19,7 @@ namespace Common.Player
 
         [Header("Components")]
         [SerializeField] private Camera playerCamera;
-        [SerializeField] private Storage.Inventory inventory;
+        [SerializeField] private EntityInventory inventory;
         [SerializeField] private Image pointer;
         
         private bool IsInteracted => Input.GetKeyDown(_use);
@@ -25,6 +27,7 @@ namespace Common.Player
         private void Update()
         {
             TryInteract();
+            TryUseItem();
         }
         
         private void TryInteract()
@@ -51,6 +54,22 @@ namespace Common.Player
             
             pointer.sprite = normalPointer;
             return null;
+        }
+
+        private void TryUseItem()
+        {
+            if (!Input.GetMouseButtonUp(0))
+                return;
+
+            var item = inventory.GetSelected();
+            if (item == null)
+                return;
+            
+            var isUsable = item.Item.gameObject.TryGetComponent(out IUsableItem usableItem);
+            if (!isUsable)
+                return;
+            
+            usableItem.Use();
         }
     }
 }

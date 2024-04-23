@@ -21,6 +21,8 @@ namespace Common.Storage
 
         int GetSize();
 
+        int GetItemCount();
+        
         void MarkChanged(ItemData item);
     }
 }
