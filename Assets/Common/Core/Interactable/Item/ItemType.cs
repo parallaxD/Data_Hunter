@@ -9,11 +9,13 @@ namespace Common.Interactable.Item
         [SerializeField] private string name;
         [SerializeField] private int minAmount = 1;
         [SerializeField] private int maxAmount = 1;
+        [SerializeField] private Sprite itemIcon;
 
         public Guid Id { get; } = Guid.NewGuid();
         public string Name => name;
         public int MinAmount => minAmount;
         public int MaxAmount => maxAmount;
+        public Sprite Icon => itemIcon;
 
         private bool Equals(ItemType other)
         {

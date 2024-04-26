@@ -6,8 +6,7 @@ namespace Common.Player
 {
     public class PlayerInventoryController : MonoBehaviour
     {
-        //TODO: понять как поменять на IHand
-        [SerializeField, SerializeReference] private Hand playerHand;
+        [SerializeField] private Hand playerHand;
         private IEntityInventory _inventory;
 
         private void Start()
@@ -38,11 +37,12 @@ namespace Common.Player
                 itemInHand.Item.gameObject.SetActive(false);
             }
 
-            var nextSlot = _inventory.GetSelectedSlot() + ScrollWell;
+            var nextSlot = _inventory.GetSelectedSlot() - ScrollWell;
             _inventory.SetSelected(nextSlot);
 
             var item = _inventory.GetSelected();
-            playerHand.TakeItem(item);
+            if (item != null)
+                playerHand.TakeItem(item);
         }
         
         private Action<ItemData> TakeFirstPickedItem()

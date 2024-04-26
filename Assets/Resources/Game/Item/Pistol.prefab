@@ -4930,6 +4930,7 @@ GameObject:
   - component: {fileID: 6482099988084258265}
   - component: {fileID: 1944509868587936337}
   - component: {fileID: 5479669794707361325}
+  - component: {fileID: 6445010111150179387}
   m_Layer: 0
   m_Name: Pistol
   m_TagString: Untagged
@@ -5019,17 +5020,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: {fileID: 11400000, guid: 603c9dbb60aed1f488e95f5da65d75fc, type: 2}
   amount: 1
-  shootPoint: {fileID: 3493892483392298554}
-  animator:
-    mode: 0
-    unityReference: {fileID: 5479669794707361325}
-    rawReference:
-      rid: -2
-  references:
-    version: 2
-    RefIds:
-    - rid: -2
-      type: {class: , ns: , asm: }
+  shootController: {fileID: 6445010111150179387}
 --- !u!114 &5479669794707361325
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5044,6 +5035,31 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   particle: {fileID: 3360268552118800356}
   gameModel: {fileID: 3162829623597200121}
+--- !u!114 &6445010111150179387
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8258682078014865853}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fea98cde26e343218e44b5c55ce0b7e0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  shootPoint: {fileID: 3493892483392298554}
+  MaxAmmo: 12
+  AmmoCount: 0
+  shootAnimation:
+    mode: 0
+    unityReference: {fileID: 5479669794707361325}
+    rawReference:
+      rid: -2
+  references:
+    version: 2
+    RefIds:
+    - rid: -2
+      type: {class: , ns: , asm: }
 --- !u!1001 &2820881850352455592
 PrefabInstance:
   m_ObjectHideFlags: 0

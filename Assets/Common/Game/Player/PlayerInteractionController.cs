@@ -1,6 +1,5 @@
 using Common.Interactable;
 using Common.Interactable.Item;
-using Common.Item;
 using Common.Storage;
 using UnityEngine;
 using UnityEngine.UI;
@@ -69,7 +68,7 @@ namespace Common.Player
             if (!isUsable)
                 return;
             
-            usableItem.Use();
+            usableItem.Use(ActionType.General);
         }
     }
 }

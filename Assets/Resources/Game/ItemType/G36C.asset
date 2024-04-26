@@ -15,3 +15,4 @@ MonoBehaviour:
   name: G36C
   minAmount: 1
   maxAmount: 1
+  itemIcon: {fileID: 21300000, guid: a90d322dcffa65949ab93c04f53bde7a, type: 3}
