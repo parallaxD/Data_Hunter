@@ -27,8 +27,9 @@ namespace Common.Player
         {
             TryInteract();
             TryUseItem();
+            TryAlternativeUseItem();
         }
-        
+
         private void TryInteract()
         {
             var interactable = FindInteractable();
@@ -59,16 +60,29 @@ namespace Common.Player
         {
             if (!Input.GetMouseButtonUp(0))
                 return;
+            
+            UseItem(ActionType.General);
+        }
 
+        private void UseItem(ActionType type)
+        {
             var item = inventory.GetSelected();
             if (item == null)
                 return;
-            
+
             var isUsable = item.Item.gameObject.TryGetComponent(out IUsableItem usableItem);
             if (!isUsable)
                 return;
+
+            usableItem.Use(playerCamera.gameObject, type);
+        }
+
+        private void TryAlternativeUseItem()
+        {
+            if (!Input.GetKeyUp(KeyCode.R))
+                return;
             
-            usableItem.Use(ActionType.General);
+            UseItem(ActionType.Alternative);
         }
     }
 }

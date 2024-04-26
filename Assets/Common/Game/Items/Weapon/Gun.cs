@@ -1,3 +1,4 @@
+using Common.Core.Interactable.Item.Usable;
 using Common.Interactable.Item;
 using UnityEngine;
 
@@ -8,15 +9,12 @@ namespace Common.Game.Items.Weapon
 
         [SerializeField] private ShootController shootController;
         
-        public override void Use(ActionType type)
+        public override void Use(GameObject who, ActionType type)
         {
             if (type == ActionType.General) 
-                shootController.Shoot();
+                shootController.Shoot(who);
             else
                 shootController.Reload();
         }
-        
-        
-
     }
 }

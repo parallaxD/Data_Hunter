@@ -8,14 +8,14 @@ namespace Common.Game.Items.Weapon
 {
     public class ShootController : MonoBehaviour
     {
-        [SerializeField] protected Transform shootPoint;
         [SerializeField] protected int MaxAmmo = 12;
         [SerializeField] protected int AmmoCount = 0;
         [SerializeField] protected SerializableInterface<IAnimator> shootAnimation;
+        [SerializeField] protected SerializableInterface<IAnimator> reloadAnimation;
 
-        public void Shoot()
+        public void Shoot(GameObject who)
         {
-            TryApplyRaycastDamage();
+            TryApplyRaycastDamage(who.transform);
             RunShootAnimation();
             if (AmmoCount == 0)
                 Reload();
@@ -31,13 +31,7 @@ namespace Common.Game.Items.Weapon
             AmmoCount = MaxAmmo;
         }
 
-        private void Update()
-        {
-            var ray = new Ray(shootPoint.position, shootPoint.forward);
-            Debug.DrawRay(ray.origin, ray.direction);
-        }
-
-        private void TryApplyRaycastDamage()
+        private void TryApplyRaycastDamage(Transform shootPoint)
         {
             var ray = new Ray(shootPoint.position, shootPoint.forward);
             Debug.DrawRay(ray.origin, ray.direction);
@@ -63,7 +57,7 @@ namespace Common.Game.Items.Weapon
 
         private void RunReloadAnimation()
         {
-            
+            reloadAnimation.Value.RunAnimation();
         }
     }
 }

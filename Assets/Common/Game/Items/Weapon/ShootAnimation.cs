@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Common.Animation
 {
-    public class GunAnimation : MonoBehaviour, IAnimator
+    public class ShootAnimation : MonoBehaviour, IAnimator
     {
 
         [SerializeField] private ParticleSystem particle;
