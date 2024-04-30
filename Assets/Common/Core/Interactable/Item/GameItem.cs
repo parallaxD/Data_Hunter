@@ -2,9 +2,9 @@ using System;
 using Common.Item;
 using UnityEngine;
 
-namespace Common.Interactable.Item
+namespace Common.Core.Interactable.Item
 {
-    public class Item : MonoBehaviour, IItem
+    public class GameItem : MonoBehaviour, IItem
     {
         [SerializeField] private ItemType type;
         [SerializeField] private int amount = 1;
@@ -28,6 +28,11 @@ namespace Common.Interactable.Item
 
         public ItemType GetItemType() => type;
         public event Action Changed;
+        
+        public virtual void SetState(ItemState state)
+        {
+            state.Apply(this);
+        }
 
         public IInteractionHandler GetInteractionHandler(GameObject who)
         {

@@ -1,9 +1,9 @@
 using System;
 using System.Collections.Generic;
-using Common.Interactable.Item;
+using Common.Core.Interactable.Item;
 using Common.Util;
 
-namespace Common.Storage
+namespace Common.Core.Storage
 {
     public interface IInventory : IUnityObject
     {

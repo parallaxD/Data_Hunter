@@ -1,4 +1,4 @@
-namespace Common.Interactable.Item
+namespace Common.Core.Interactable.Item.Usable
 {
     public enum ActionType
     {

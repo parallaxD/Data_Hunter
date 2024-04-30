@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-namespace Common.Interactable.Item
+namespace Common.Core.Interactable.Item
 {
     [CreateAssetMenu(fileName = "ItemType", menuName = "Game/Items/New Item Type")]
     public class ItemType : ScriptableObject

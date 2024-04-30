@@ -1,9 +1,9 @@
 using System;
 using System.Collections.Generic;
-using Common.Interactable.Item;
+using Common.Core.Interactable.Item;
 using UnityEngine;
 
-namespace Common.Storage
+namespace Common.Core.Storage
 {
     public class Inventory : MonoBehaviour, IInventory
     {

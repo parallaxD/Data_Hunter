@@ -1,7 +1,6 @@
-
 using UnityEngine;
 
-namespace Common.Interactable.Item
+namespace Common.Core.Interactable.Item.Usable
 {
     public interface IUsableItem : IItem
     {

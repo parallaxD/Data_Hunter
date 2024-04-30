@@ -1,10 +1,10 @@
-using Common.Interactable;
-using Common.Interactable.Item;
+using Common.Core.Interactable;
+using Common.Core.Interactable.Item.Usable;
 using Common.Storage;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace Common.Player
+namespace Common.Game.Player
 {
     public class PlayerInteractionController : MonoBehaviour
     {

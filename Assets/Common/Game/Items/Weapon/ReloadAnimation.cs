@@ -11,7 +11,7 @@ namespace Common.Game.Items.Weapon
         public void RunAnimation()
         {
             gameModel.transform
-                .DOShakeRotation(0.5f);
+                .DOShakePosition(0.5f);
         }
     }
 }

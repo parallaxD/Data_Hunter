@@ -1,7 +1,8 @@
+using Common.Animation;
 using DG.Tweening;
 using UnityEngine;
 
-namespace Common.Animation
+namespace Common.Game.Items.Weapon
 {
     public class ShootAnimation : MonoBehaviour, IAnimator
     {

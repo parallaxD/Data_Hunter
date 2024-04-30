@@ -1,9 +1,8 @@
-
 using Common.Item;
 using Common.Util;
 using UnityEngine;
 
-namespace Common.Interactable
+namespace Common.Core.Interactable
 {
     public interface IInteractable : IUnityObject
     {

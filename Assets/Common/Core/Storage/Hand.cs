@@ -1,9 +1,13 @@
+using Common.Core.Interactable.Item;
+using Common.Core.Interactable.Item.Active;
+using Common.Core.Storage;
 using UnityEngine;
 
 namespace Common.Storage
 {
     public class Hand : MonoBehaviour, IHand
     {
+        [SerializeField] private Transform interactionPosition; 
         private ItemData _itemInHand;
         
         public ItemData GetItem()
@@ -17,12 +21,15 @@ namespace Common.Storage
             
             var itemTransform = item.Item.transform;
             itemTransform.SetParent(transform);
-            itemTransform.gameObject.SetActive(true);
             itemTransform.position = transform.position;
             itemTransform.rotation = transform.rotation;
             
-            itemTransform.GetComponent<Rigidbody>().useGravity = false;
-            itemTransform.GetComponent<Collider>().enabled = false;
+            item.Item.SetState(ItemState.InHand(this));
+        }
+
+        public Transform GetInteractionPosition()
+        {
+            return interactionPosition;
         }
     }
 }

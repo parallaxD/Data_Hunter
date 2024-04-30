@@ -1,6 +1,6 @@
 using Common.Damage;
 
-namespace Common.Interactable.Item.Weapon
+namespace Common.Game.Items.Weapon
 {
     public class GunDamageProvider : IHpChanger
     {

@@ -1,6 +1,7 @@
-using Common.Interactable.Item;
+using Common.Core.Interactable.Item;
+using Common.Storage;
 
-namespace Common.Storage
+namespace Common.Core.Storage
 {
     public class ItemData
     {

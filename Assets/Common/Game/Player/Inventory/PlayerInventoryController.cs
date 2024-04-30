@@ -1,8 +1,10 @@
 using System;
+using Common.Core.Interactable.Item;
+using Common.Core.Storage;
 using Common.Storage;
 using UnityEngine;
 
-namespace Common.Player
+namespace Common.Game.Player.Inventory
 {
     public class PlayerInventoryController : MonoBehaviour
     {
@@ -35,6 +37,7 @@ namespace Common.Player
             {
                 itemInHand.Item.transform.SetParent(itemInHand.Inventory.transform);
                 itemInHand.Item.gameObject.SetActive(false);
+                itemInHand.Item.SetState(ItemState.InInventory);
             }
 
             var nextSlot = _inventory.GetSelectedSlot() - ScrollWell;

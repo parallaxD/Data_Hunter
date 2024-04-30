@@ -1,7 +1,7 @@
 using System.Collections;
 using UnityEngine;
 
-namespace Common.Player
+namespace Common.Game.Player
 {
     public class PlayerMoveController : MonoBehaviour
     {

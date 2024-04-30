@@ -1,20 +1,22 @@
-using Common.Core.Interactable.Item.Usable;
-using Common.Interactable.Item;
+using Common.Core.Interactable.Item;
+using Common.Core.Interactable.Item.Active;
+using Common.Core.Storage;
 using UnityEngine;
 
 namespace Common.Game.Items.Weapon
 {
-    public class Gun : UsableItem
+    public class Gun : GameItem, IActiveItem
     {
-
         [SerializeField] private ShootController shootController;
-        
-        public override void Use(GameObject who, ActionType type)
+
+        public void SetActive(bool isActive)
         {
-            if (type == ActionType.General) 
-                shootController.Shoot(who);
-            else
-                shootController.Reload();
+            shootController.enabled = isActive;
+        }
+
+        public void SetHand(IHand hand)
+        {
+            shootController.WhoShoot = hand.GetInteractionPosition();
         }
     }
 }
