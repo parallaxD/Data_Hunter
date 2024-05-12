@@ -26,14 +26,13 @@ namespace Common.Game.Player
 
         private float _rotationX;
 
-
         [Header("Controls")]
         [SerializeField] private KeyCode _jumpKey = KeyCode.Space;
         [SerializeField] private KeyCode _sprintKey = KeyCode.LeftShift;
         [SerializeField] private KeyCode _crouchKey = KeyCode.LeftControl;
         [SerializeField] private KeyCode _dashKey = KeyCode.LeftShift;
 
-        [Range(0,10)]
+        [Range(0, 10)]
         [SerializeField] private float _mouseSensivityY;
         [Range(0, 10)]
         [SerializeField] private float _mouseSensivityX;
@@ -63,8 +62,6 @@ namespace Common.Game.Player
 
         private void Start()
         {
-            // _playerCamera = GetComponentInChildren<Camera>();
-            // _characterController = GetComponentInParent<CharacterController>();
             Cursor.lockState = CursorLockMode.Locked;
             Cursor.visible = false;
             _characterController.detectCollisions = true;
@@ -72,7 +69,6 @@ namespace Common.Game.Player
 
         private void Update()
         {
-            //print("Player Is Sprinting: " + IsSprinting);
             MovePlayer();
             MovePlayerCamera();
             Jump();
@@ -91,7 +87,6 @@ namespace Common.Game.Player
             _moveDirection.y = moveDirectionY;
         }
 
-
         private void HandleMouseInput()
         {
             _rotationX -= Input.GetAxis("Mouse Y") * _mouseSensivityY;
@@ -101,7 +96,6 @@ namespace Common.Game.Player
         private void MovePlayerCamera()
         {
             HandleMouseInput();
-       
             _playerCamera.transform.localRotation = Quaternion.Euler(_rotationX, 0f, 0f);
             _characterController.transform.rotation *= Quaternion.Euler(0, Input.GetAxis("Mouse X") * _mouseSensivityX, 0);
         }
@@ -110,7 +104,7 @@ namespace Common.Game.Player
         {
             _moveDirection.y = _jumpForce;
         }
-    
+
         private void HandleCrouch()
         {
             StartCoroutine(CrouchStand());
@@ -161,19 +155,20 @@ namespace Common.Game.Player
 
         private void MovePlayer()
         {
-            HandleMovementInput();
+            HandleMovementInput();        
+
             if (!_characterController.isGrounded)
             {
                 _moveDirection.y -= _gravityMultiplier * Time.deltaTime;
             }
             _characterController.Move(_moveDirection * Time.deltaTime);
         }
-        
+
         private IEnumerator DashProcess()
         {
             float startTime = Time.time;
 
-            while(Time.time < startTime + _dashTime)
+            while (Time.time < startTime + _dashTime)
             {
                 _characterController.Move(_moveDirection * _dashSpeed * Time.deltaTime);
                 yield return null;
@@ -195,12 +190,11 @@ namespace Common.Game.Player
             StartCoroutine(DashProcess());
         }
 
-
         private IEnumerator DashCooldown()
         {
             _canDash = false;
             yield return new WaitForSeconds(_dashCooldownTime);
             _canDash = true;
-        } 
+        }
     }
 }
