@@ -11,4 +11,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/InventoryTestScene.unity
     guid: c57868e13ed07e34d83074c023fbc3d8
+  - enabled: 1
+    path: Assets/Scenes/Level2_Test.unity
+    guid: f19ad9292f265b04ba9e48c146cfc9af
   m_configObjects: {}
