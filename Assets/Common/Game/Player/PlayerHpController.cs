@@ -13,11 +13,17 @@ namespace Common.Game.Player
 
         public event Action<int> OnHealthChanged;
 
+        [SerializeField] private int _maxHP = 100;
+
         private void Update()
         {
             if (Input.GetKeyDown(KeyCode.LeftAlt))
             {
                 TakeDamage(90);
+            }
+            if (Input.GetKeyDown(KeyCode.DownArrow))
+            {
+                TakeHeal(90);
             }
         }
 
@@ -34,15 +40,31 @@ namespace Common.Game.Player
 
         public void TakeDamage(int damage)
         {
-            _currentHP -= damage;
-            _currentHP = Mathf.Max(_currentHP, 0);
+            print('d');
+            if (_currentHP - damage < 0)
+            {
+                _currentHP = 0;
+            }
+            else
+            {
+                _currentHP -= damage;
+            }
+            print(_currentHP);
             OnHealthChanged?.Invoke(_currentHP);
         }
 
         public void TakeHeal(int heal)
         {
-            _currentHP += heal;
-            _currentHP = Mathf.Max(_currentHP, 0);
+            print('h');
+            if (_currentHP + heal > _maxHP)
+            {
+                _currentHP = _maxHP;
+            }
+            else 
+            { 
+                _currentHP += heal; 
+            }
+            print(_currentHP);
             OnHealthChanged?.Invoke(_currentHP);
         }
     }

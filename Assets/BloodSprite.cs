@@ -20,16 +20,13 @@ public class BloodSprite : MonoBehaviour
 
     private void HandleHealthChange(int currentHP)
     {
-        if (currentHP < 20)
+        if (currentHP <= 20)
         {
-            float t = Mathf.InverseLerp(0, 20, currentHP);
-            float alpha = Mathf.Lerp(0, 150f / 255f, t); // 150 out of 255 for alpha
-
             Color color = _bloodSpriteImage.color;
-            color.a = alpha;
+            color.a = 0.6f;
             _bloodSpriteImage.color = color;
         }
-        else
+        else if (currentHP > 20)
         {
             Color color = _bloodSpriteImage.color;
             color.a = 0;
