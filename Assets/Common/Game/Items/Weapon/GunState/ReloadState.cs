@@ -25,6 +25,7 @@ namespace Common.Game.Items.Weapon.GunState
             await _reloadTask;
             
             StateMachine.SetState<ReadyToShootState>();
+            ShootController.NeedShoot = false;
         }
     }
 }

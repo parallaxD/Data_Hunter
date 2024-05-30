@@ -4,6 +4,7 @@ using Common.Damage;
 using Common.Game.Items.Weapon.GunState;
 using TNRD;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace Common.Game.Items.Weapon
 {
@@ -23,8 +24,9 @@ namespace Common.Game.Items.Weapon
         [SerializeField] protected SerializableInterface<IAnimator> reloadAnimation;
         private StateMachine _shootState;
 
-        
-        
+        public bool NeedReload { get; set; }
+        public bool NeedShoot { get; set; }
+
         private void Start()
         {
             AmmoCount = MaxAmmo;
