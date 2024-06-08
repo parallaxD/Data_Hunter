@@ -28,7 +28,6 @@ public class SettingsMenu : MonoBehaviour
         _qualityDropdown.value = 0;
 
         QualitySettings.vSyncCount = 1;
-        QualitySettings.SetQualityLevel(2);
 
         _resolutions = Screen.resolutions;
 
