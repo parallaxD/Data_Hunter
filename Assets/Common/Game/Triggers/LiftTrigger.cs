@@ -9,7 +9,9 @@ namespace Common.Game
         private Animator _elevatorAnim;
         private int _finalCountdownValue = 5;
         [SerializeField] private ElevatorTrigger _elevatorTrigger;
-        private bool _sceneLoaded = false;
+
+        [SerializeField] private bool _startLevelLift;
+        [SerializeField] private float _animSpeed;
 
         private void Awake()
         {
@@ -20,9 +22,12 @@ namespace Common.Game
         {
             if (other.GetComponent<CharacterController>() != null)
             {
-                _elevatorAnim.SetFloat("openSpeed", -1.0f);
+                _elevatorAnim.SetFloat("openSpeed", _animSpeed);
                 _elevatorAnim.Play("ElevatorOpen");
-                StartCoroutine(FinalCountdown());
+                if (!_startLevelLift)
+                {
+                    StartCoroutine(FinalCountdown());
+                }
             }
         }
 
