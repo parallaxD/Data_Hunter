@@ -2,12 +2,12 @@ using UnityEngine;
 
 public class ElevatorPlatform : MonoBehaviour
 {
-    public Transform platform;           // Платформа, которая будет подниматься и опускаться
-    public float liftHeight = 5f;         // Высота, на которую платформа будет подниматься
-    public float speed = 2f;              // Скорость поднятия и опускания
-    private Vector3 initialPosition;      // Начальная позиция платформы
-    private Vector3 targetPosition;       // Целевая позиция платформы
-    private bool playerOnPlatform = false;// Флаг, указывающий на нахождение игрока на платформе
+    public Transform platform;           
+    public float liftHeight = 5f;  
+    public float speed = 2f;           
+    private Vector3 initialPosition;      
+    private Vector3 targetPosition;      
+    private bool playerOnPlatform = false;
 
     private void Start()
     {
@@ -17,7 +17,6 @@ public class ElevatorPlatform : MonoBehaviour
 
     private void Update()
     {
-        // Если игрок на платформе, поднимаем её к целевой позиции, иначе опускаем обратно
         if (playerOnPlatform)
         {
             platform.position = Vector3.MoveTowards(platform.position, targetPosition, speed * Time.deltaTime);
@@ -30,21 +29,19 @@ public class ElevatorPlatform : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        // Проверяем, если игрок вошел на платформу
         if (other.CompareTag("Player"))
         {
             playerOnPlatform = true;
-            other.transform.SetParent(platform);  // Устанавливаем платформу родителем игрока
+            other.transform.SetParent(platform); 
         }
     }
 
     private void OnTriggerExit(Collider other)
     {
-        // Проверяем, если игрок покинул платформу
         if (other.CompareTag("Player"))
         {
             playerOnPlatform = false;
-            other.transform.SetParent(null);  // Сбрасываем родителя игрока
+            other.transform.SetParent(null);
         }
     }
 }
