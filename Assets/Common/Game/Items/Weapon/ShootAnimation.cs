@@ -7,15 +7,11 @@ namespace Common.Game.Items.Weapon
     public class ShootAnimation : MonoBehaviour, IAnimator
     {
 
-        [SerializeField] private ParticleSystem particle;
-        [SerializeField] private GameObject gameModel; 
+        [SerializeField] private Animator animator;
         
         public void RunAnimation()
         {
-            particle.Play();
-            gameModel.transform
-                .DOShakePosition(0.15f, 0.2f, 1, 1f, false, true, ShakeRandomnessMode.Harmonic)
-                .SetEase(Ease.InOutBounce);
+            animator.SetBool("shooting", true);
         }
     }
 }
