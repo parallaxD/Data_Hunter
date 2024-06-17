@@ -12,7 +12,7 @@ public class DoorTrigger : MonoBehaviour
         if (other.GetComponent<CharacterController>() != null)
         {
             var animator = _doorToOpen.GetComponent<Animator>();
-            animator.speed = _animSpeed;
+            animator.SetFloat("speed", _animSpeed);
             animator.Play("PersonDoorOpen");
             Destroy(gameObject);
         }

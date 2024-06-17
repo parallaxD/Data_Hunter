@@ -1695,7 +1695,7 @@ BoxCollider:
   m_Enabled: 1
   serializedVersion: 3
   m_Size: {x: 0.21133256, y: 0.21006873, z: 0}
-  m_Center: {x: -0.27393186, y: 0.3392183, z: 0.11454123}
+  m_Center: {x: 0.27, y: 0.3392183, z: 0.11454123}
 --- !u!65 &789654774
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -3036,7 +3036,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   platform: {fileID: 917470443}
-  liftHeight: 6
+  liftHeight: 6.2
   speed: 2
 --- !u!64 &917470447
 MeshCollider:
@@ -3309,7 +3309,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   platform: {fileID: 986848742}
-  liftHeight: 6
+  liftHeight: 6.2
   speed: 2
 --- !u!64 &986848746
 MeshCollider:
