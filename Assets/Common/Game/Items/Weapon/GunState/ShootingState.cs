@@ -30,7 +30,7 @@ namespace Common.Game.Items.Weapon.GunState
             _shootDelayTask = UniTask.Delay(TimeSpan.FromMilliseconds(_shootingDelay), DelayType.DeltaTime, PlayerLoopTiming.Update, Application.exitCancellationToken).ToAsyncLazy();
             await _shootDelayTask.Task;
             
-            if (!(_hasAutomaticShooting && Input.GetMouseButton(0)))
+            if (!(_hasAutomaticShooting && (ShootController.NeedShoot || Input.GetMouseButton(0) && ShootController.WhoShoot.CompareTag("MainCamera"))))
                 StateMachine.SetState<ReadyToShootState>();
         }
     }

@@ -11,13 +11,13 @@ namespace Common.Game.Items.Weapon.GunState
 
         public override void Apply()
         {
-            if (Input.GetMouseButtonDown(0))
+            if (ShootController.NeedShoot || Input.GetMouseButtonDown(0) && ShootController.WhoShoot.CompareTag("MainCamera"))
             {
                 StateMachine.SetState<ShootingState>();
                 return;
             }
 
-            if (!Input.GetKeyUp(KeyCode.R)) 
+            if (!ShootController.NeedReload || Input.GetKeyUp(KeyCode.R) && ShootController.WhoShoot.CompareTag("MainCamera")) 
                 return;
 
             StateMachine.SetState<ReloadState>();
