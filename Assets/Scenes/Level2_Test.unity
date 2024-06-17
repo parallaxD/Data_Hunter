@@ -1695,7 +1695,7 @@ BoxCollider:
   m_Enabled: 1
   serializedVersion: 3
   m_Size: {x: 0.21133256, y: 0.21006873, z: 0}
-  m_Center: {x: -0.27393186, y: 0.3392178, z: 0.12451761}
+  m_Center: {x: -0.27393186, y: 0.3392183, z: 0.11454123}
 --- !u!65 &789654774
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1737,7 +1737,7 @@ BoxCollider:
   m_Enabled: 1
   serializedVersion: 3
   m_Size: {x: 0.21133256, y: 0.21006873, z: 0}
-  m_Center: {x: -0.27393186, y: 0.3392178, z: 0.12451761}
+  m_Center: {x: -0.27393186, y: 0.3392178, z: 0.1245187}
 --- !u!1 &825795066
 GameObject:
   m_ObjectHideFlags: 0
@@ -1805,6 +1805,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _doorToOpen: {fileID: 291396096}
+  _animSpeed: 0
 --- !u!1 &830695213 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4759899767971137389, guid: 050ea360efea3bd4e869b5b32e7416c4,
@@ -2141,11 +2142,31 @@ PrefabInstance:
       propertyPath: m_ConstrainProportionsScale
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: -8510903711497700727, guid: 050ea360efea3bd4e869b5b32e7416c4,
+        type: 3}
+      propertyPath: m_Name
+      value: enemy door 2
+      objectReference: {fileID: 0}
     - target: {fileID: -6997890332621082036, guid: 050ea360efea3bd4e869b5b32e7416c4,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 7ec3e295ae34d2847be87ad2f7f71001, type: 2}
+    - target: {fileID: -6378149263319725904, guid: 050ea360efea3bd4e869b5b32e7416c4,
+        type: 3}
+      propertyPath: m_Name
+      value: enemy door 2
+      objectReference: {fileID: 0}
+    - target: {fileID: -5493881883160175775, guid: 050ea360efea3bd4e869b5b32e7416c4,
+        type: 3}
+      propertyPath: m_Name
+      value: enemy door 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -5278145294487316646, guid: 050ea360efea3bd4e869b5b32e7416c4,
+        type: 3}
+      propertyPath: m_Name
+      value: enemy door 2
+      objectReference: {fileID: 0}
     - target: {fileID: -5237106663968578890, guid: 050ea360efea3bd4e869b5b32e7416c4,
         type: 3}
       propertyPath: m_ConstrainProportionsScale
@@ -2156,16 +2177,66 @@ PrefabInstance:
       propertyPath: m_Name
       value: lift doors 1
       objectReference: {fileID: 0}
+    - target: {fileID: -3300148050473091546, guid: 050ea360efea3bd4e869b5b32e7416c4,
+        type: 3}
+      propertyPath: m_Name
+      value: enemy door 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -3241114897938437434, guid: 050ea360efea3bd4e869b5b32e7416c4,
+        type: 3}
+      propertyPath: m_Name
+      value: enemy door 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -2929169629624765028, guid: 050ea360efea3bd4e869b5b32e7416c4,
+        type: 3}
+      propertyPath: m_Name
+      value: enemy door 2
+      objectReference: {fileID: 0}
+    - target: {fileID: -2682603562531536608, guid: 050ea360efea3bd4e869b5b32e7416c4,
+        type: 3}
+      propertyPath: m_Name
+      value: enemy door 2
+      objectReference: {fileID: 0}
+    - target: {fileID: -1664278600949878761, guid: 050ea360efea3bd4e869b5b32e7416c4,
+        type: 3}
+      propertyPath: m_Name
+      value: enemy door 1
+      objectReference: {fileID: 0}
     - target: {fileID: -1065664983339061443, guid: 050ea360efea3bd4e869b5b32e7416c4,
         type: 3}
       propertyPath: m_LocalPosition.x
       value: -69.7
+      objectReference: {fileID: 0}
+    - target: {fileID: -964023075248598055, guid: 050ea360efea3bd4e869b5b32e7416c4,
+        type: 3}
+      propertyPath: m_Name
+      value: enemy door 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -771420236295543361, guid: 050ea360efea3bd4e869b5b32e7416c4,
+        type: 3}
+      propertyPath: m_Name
+      value: enemy door 2
       objectReference: {fileID: 0}
     - target: {fileID: -382372128961845108, guid: 050ea360efea3bd4e869b5b32e7416c4,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 3058fd5e5ace2814384526455f16b60e, type: 2}
+    - target: {fileID: 264307815218170094, guid: 050ea360efea3bd4e869b5b32e7416c4,
+        type: 3}
+      propertyPath: m_Name
+      value: enemy door 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 728415676282428209, guid: 050ea360efea3bd4e869b5b32e7416c4,
+        type: 3}
+      propertyPath: m_Name
+      value: enemy door 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 837544299747286836, guid: 050ea360efea3bd4e869b5b32e7416c4,
+        type: 3}
+      propertyPath: m_Name
+      value: enemy door 2
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 050ea360efea3bd4e869b5b32e7416c4,
         type: 3}
       propertyPath: m_Name
@@ -2176,10 +2247,35 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1085465769553170657, guid: 050ea360efea3bd4e869b5b32e7416c4,
+        type: 3}
+      propertyPath: m_Name
+      value: enemy door 2
+      objectReference: {fileID: 0}
     - target: {fileID: 1145129055083054815, guid: 050ea360efea3bd4e869b5b32e7416c4,
         type: 3}
       propertyPath: m_Name
       value: lift doors 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1687164905677518268, guid: 050ea360efea3bd4e869b5b32e7416c4,
+        type: 3}
+      propertyPath: m_Name
+      value: enemy door 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1901226910964921574, guid: 050ea360efea3bd4e869b5b32e7416c4,
+        type: 3}
+      propertyPath: m_Name
+      value: enemy door 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1987569278037256882, guid: 050ea360efea3bd4e869b5b32e7416c4,
+        type: 3}
+      propertyPath: m_Name
+      value: enemy door 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2671824308369540550, guid: 050ea360efea3bd4e869b5b32e7416c4,
+        type: 3}
+      propertyPath: m_Name
+      value: enemy door 1
       objectReference: {fileID: 0}
     - target: {fileID: 4009327752442449403, guid: 050ea360efea3bd4e869b5b32e7416c4,
         type: 3}
@@ -2196,16 +2292,61 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5410113651248777098, guid: 050ea360efea3bd4e869b5b32e7416c4,
+        type: 3}
+      propertyPath: m_Name
+      value: enemy door 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5667137224987729569, guid: 050ea360efea3bd4e869b5b32e7416c4,
+        type: 3}
+      propertyPath: m_Name
+      value: enemy door 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6134279824453926819, guid: 050ea360efea3bd4e869b5b32e7416c4,
         type: 3}
       propertyPath: m_Name
       value: door 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6312301437246388192, guid: 050ea360efea3bd4e869b5b32e7416c4,
+        type: 3}
+      propertyPath: m_Name
+      value: enemy door 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6346992976219938956, guid: 050ea360efea3bd4e869b5b32e7416c4,
+        type: 3}
+      propertyPath: m_Name
+      value: enemy door 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6818659524381677982, guid: 050ea360efea3bd4e869b5b32e7416c4,
+        type: 3}
+      propertyPath: m_Name
+      value: enemy door 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7644553291976380921, guid: 050ea360efea3bd4e869b5b32e7416c4,
+        type: 3}
+      propertyPath: m_Name
+      value: enemy door 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7859920347438185845, guid: 050ea360efea3bd4e869b5b32e7416c4,
+        type: 3}
+      propertyPath: m_Name
+      value: enemy door 2
       objectReference: {fileID: 0}
     - target: {fileID: 8905464733029685325, guid: 050ea360efea3bd4e869b5b32e7416c4,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 3058fd5e5ace2814384526455f16b60e, type: 2}
+    - target: {fileID: 9056295152238799733, guid: 050ea360efea3bd4e869b5b32e7416c4,
+        type: 3}
+      propertyPath: m_Name
+      value: enemy door 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 9059787563094647903, guid: 050ea360efea3bd4e869b5b32e7416c4,
+        type: 3}
+      propertyPath: m_Name
+      value: enemy door 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects:
     - {fileID: 4691651619392412977, guid: 050ea360efea3bd4e869b5b32e7416c4, type: 3}
@@ -4663,7 +4804,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _videoPlayerController: {fileID: 1590290958}
-  _playOnAwake: 0
+  _playOnAwake: 1
 --- !u!4 &1715864848
 Transform:
   m_ObjectHideFlags: 0
