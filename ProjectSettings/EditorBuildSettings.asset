@@ -11,13 +11,13 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/InventoryTestScene.unity
     guid: c57868e13ed07e34d83074c023fbc3d8
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/MainMenu.unity
     guid: f7580c00305faa24a83575a932d6e90b
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Level1_Test.unity
     guid: 03e695113ad7f1744b77a196cdf6d86c
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Level2_Test.unity
     guid: f19ad9292f265b04ba9e48c146cfc9af
   - enabled: 1

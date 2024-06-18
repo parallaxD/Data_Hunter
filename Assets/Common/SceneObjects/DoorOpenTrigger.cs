@@ -1,20 +1,21 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class DoorTrigger : MonoBehaviour
+namespace Common.SceneObjects
 {
-    [SerializeField] private GameObject _doorToOpen;
-    [SerializeField] private float _animSpeed;
-
-    private void OnTriggerEnter(Collider other)
+    public class DoorTrigger : MonoBehaviour
     {
-        if (other.GetComponent<CharacterController>() != null)
+        [SerializeField] private GameObject _doorToOpen;
+        [SerializeField] private float _animSpeed;
+
+        private void OnTriggerEnter(Collider other)
         {
-            var animator = _doorToOpen.GetComponent<Animator>();
-            animator.SetFloat("speed", _animSpeed);
-            animator.Play("PersonDoorOpen");
-            Destroy(gameObject);
+            if (other.GetComponent<CharacterController>() != null)
+            {
+                var animator = _doorToOpen.GetComponent<Animator>();
+                animator.SetFloat("speed", _animSpeed);
+                animator.Play("PersonDoorOpen");
+                Destroy(gameObject);
+            }
         }
     }
 }

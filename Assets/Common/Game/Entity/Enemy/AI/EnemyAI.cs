@@ -2,6 +2,7 @@ using System;
 using Common.Storage;
 using UnityEngine;
 using UnityEngine.AI;
+using Random = UnityEngine.Random;
 
 namespace Common.Game.Entity.Enemy
 {
@@ -21,6 +22,9 @@ namespace Common.Game.Entity.Enemy
 
         private void FixedUpdate()
         {
+            if (enemy.isDead)
+                return;
+            
             var distanceToTarget = Vector3.Distance(_target.position, transform.position);
 
             if (lookRadius >= distanceToTarget)
@@ -29,7 +33,10 @@ namespace Common.Game.Entity.Enemy
                 {
                     LookToTarget();
                 }
-                _agent.SetDestination(_target.position);
+
+                
+                var shakePos = Random.insideUnitCircle * 6f;
+                _agent.SetDestination(_target.position + new Vector3(shakePos.x, 0 ,shakePos.y));
                 enemy.Shoot();
             }
         }

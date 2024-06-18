@@ -14,6 +14,9 @@ namespace Common.Entity
         [SerializeField] private ShootController shootController;
         private IDamageable _damageable;
         [SerializeField] private Transform startShootPosition;
+        [SerializeField] private Animator _animator;
+
+        public bool isDead = false;
 
         private static readonly HashSet<string> IgnoredTags = new()
         {
@@ -24,12 +27,16 @@ namespace Common.Entity
         {
             gun.SetState(ItemState.InHand(hand));
             _damageable = GetComponent<IDamageable>();
-            _damageable.OnDestroy += d => Destroy(gameObject);
+            _damageable.OnDestroy += d =>
+            {
+                _animator.SetBool("dead", true);
+                isDead = true;
+            };
         }
 
         public void Shoot()
         {
-            if (Random.value > 0.05)
+            if (Random.value > 0.01)
                 return;
             
             var spread = Random.insideUnitCircle * 1.2f;

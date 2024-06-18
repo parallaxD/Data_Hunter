@@ -21,7 +21,7 @@ namespace Common.GameEntity.EnemySpawn
 
         // Сюда можно будет добавить любое условие для спавна любой волны противников
         // if (condition) { SpawnEnemyWave() }
-        private void SpawnEnemyWave()
+        public void SpawnEnemyWave()
         {
             foreach(var spawnPoint in _enemySpawnPoints)
             {

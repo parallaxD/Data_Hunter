@@ -10,7 +10,7 @@ namespace Common.GameEntity.EnemySpawn
         private void Awake()
         {
             Position = gameObject.transform.position;
-            print(Position);
+            // print(Position);
         }
 
     }
