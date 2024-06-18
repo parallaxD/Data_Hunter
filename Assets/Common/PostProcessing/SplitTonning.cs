@@ -32,7 +32,7 @@ public class SplitTonning : MonoBehaviour
 
     private void HandleHealthChanged(int currentHp, int maxHp)
     {
-        if (currentHp < 20)
+        if (currentHp < maxHp * 0.2f)
         {
             float t = Mathf.InverseLerp(0, 20, currentHp);
             Color newColor = Color.Lerp(Color.red, Color.white, t);

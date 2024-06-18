@@ -18,6 +18,13 @@ namespace Common.Core.Damage
             var currentHp = hp;
             hp += hpChanger.CalculateHpDiff();
 
+            
+            if (hp > maxHp)
+                hp = maxHp;
+
+            if (hp < 0)
+                hp = 0;
+            
             var hpEvent = hp > currentHp
                 ? OnHeal
                 : OnDamage;
@@ -28,9 +35,6 @@ namespace Common.Core.Damage
                 OnDestroy?.Invoke(this);
                 return;
             }
-
-            if (hp > maxHp)
-                hp = maxHp;
         }
 
         public int GetHp()
