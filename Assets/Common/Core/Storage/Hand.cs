@@ -9,7 +9,9 @@ namespace Common.Storage
     {
         [SerializeField] private Transform interactionPosition; 
         private ItemData _itemInHand;
-        
+
+        public Transform InteractionPosition => interactionPosition;
+
         public ItemData GetItem()
         {
             return _itemInHand;

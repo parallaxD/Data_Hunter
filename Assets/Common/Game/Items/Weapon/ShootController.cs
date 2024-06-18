@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using Common.Animation;
 using Common.Core.State;
 using Common.Damage;
@@ -10,6 +11,8 @@ namespace Common.Game.Items.Weapon
 {
     public class ShootController : MonoBehaviour
     {
+        private static readonly HashSet<string> NoIgnore = new ();
+
         [Header("Gun settings")]
         [SerializeField] protected int MaxAmmo = 12;
         [SerializeField] protected int AmmoCount = 0;
@@ -17,7 +20,7 @@ namespace Common.Game.Items.Weapon
         [SerializeField] protected int reloadDelayMs = 2;
         [SerializeField] protected bool automaticShooting = false;
         
-        public Transform WhoShoot { get; set; }
+        [SerializeField] public Transform WhoShoot { get; set; }
 
         [Header("Animation")]
         [SerializeField] protected SerializableInterface<IAnimator> shootAnimation;
@@ -41,7 +44,12 @@ namespace Common.Game.Items.Weapon
 
         public void Shoot()
         {
-            TryApplyRaycastDamage(WhoShoot);
+            Shoot(NoIgnore);
+        }
+        
+        public void Shoot(HashSet<string> ignoreTags)
+        {
+            TryApplyRaycastDamage(WhoShoot, ignoreTags);
             RunShootAnimation();
             if (AmmoCount == 0)
                 Reload();
@@ -52,7 +60,7 @@ namespace Common.Game.Items.Weapon
             RunReloadAnimation();
         }
 
-        private void TryApplyRaycastDamage(Transform shootPoint)
+        private void TryApplyRaycastDamage(Transform shootPoint, HashSet<string> ignoredTags)
         {
             var ray = new Ray(shootPoint.position, shootPoint.forward);
             Debug.DrawRay(ray.origin, ray.direction);
@@ -60,7 +68,8 @@ namespace Common.Game.Items.Weapon
                 return;
 
             var hasDamageable = hit.transform.TryGetComponent(out IDamageable damageable);
-            if (!hasDamageable)
+            var needIgnore = ignoredTags.Contains(hit.transform.tag); 
+            if (!hasDamageable || needIgnore)
                 return;
             
             damageable.Apply(GetDamageProvider(damageable));

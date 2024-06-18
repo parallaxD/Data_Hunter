@@ -1,36 +1,35 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
 using Common.Game.Player;
+using UnityEngine;
 using UnityEngine.UI;
 
-public class BloodSprite : MonoBehaviour
+namespace Common.UI
 {
-    [SerializeField] private PlayerHpController _hpController;
-
-    [SerializeField] private int valueToReach;
-
-    private Image _bloodSpriteImage;
-
-    void Start()
+    public class BloodSprite : MonoBehaviour
     {
-        _hpController.OnHealthChanged += HandleHealthChange;
-        _bloodSpriteImage = GetComponent<Image>();
-    }
+        [SerializeField] private PlayerHpController _hpController;
 
-    private void HandleHealthChange(int currentHP)
-    {
-        if (currentHP <= 20)
+        private Image _bloodSpriteImage;
+
+        void Start()
         {
-            Color color = _bloodSpriteImage.color;
-            color.a = 0.6f;
-            _bloodSpriteImage.color = color;
+            _hpController.OnHealthChanged += HandleHealthChange;
+            _bloodSpriteImage = GetComponent<Image>();
         }
-        else if (currentHP > 20)
+
+        private void HandleHealthChange(int currentHp, int maxHp)
         {
+            // if (currentHp <= 100)
+            // {
             Color color = _bloodSpriteImage.color;
-            color.a = 0;
+            color.a = 1 - (float)currentHp / maxHp;
             _bloodSpriteImage.color = color;
+            // }
+            // else
+            // {
+            //     Color color = _bloodSpriteImage.color;
+            //     color.a = 0;
+            //     _bloodSpriteImage.color = color;
+            // }
         }
     }
 }

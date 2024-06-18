@@ -30,11 +30,11 @@ public class SplitTonning : MonoBehaviour
         }
     }
 
-    private void HandleHealthChanged(int currentHP)
+    private void HandleHealthChanged(int currentHp, int maxHp)
     {
-        if (currentHP < 20)
+        if (currentHp < 20)
         {
-            float t = Mathf.InverseLerp(0, 20, currentHP);
+            float t = Mathf.InverseLerp(0, 20, currentHp);
             Color newColor = Color.Lerp(Color.red, Color.white, t);
             _splitTonning.shadows.value = Color.red;
         }

@@ -10,6 +10,7 @@ namespace Common.Game.Entity.Enemy
         private Transform _target;
         private NavMeshAgent _agent;
         private Hand Hand;
+        [SerializeField] private Common.Entity.Enemy enemy;
         [SerializeField] private float lookRadius = 20;
 
         private void Start()
@@ -29,6 +30,7 @@ namespace Common.Game.Entity.Enemy
                     LookToTarget();
                 }
                 _agent.SetDestination(_target.position);
+                enemy.Shoot();
             }
         }
 

@@ -1,7 +1,8 @@
 using System;
+using Common.Damage;
 using UnityEngine;
 
-namespace Common.Damage
+namespace Common.Core.Damage
 {
     public class Damageable : MonoBehaviour, IDamageable
     {

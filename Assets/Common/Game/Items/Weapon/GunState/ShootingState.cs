@@ -26,6 +26,8 @@ namespace Common.Game.Items.Weapon.GunState
                 return;
             
             ShootController.Shoot();
+            ShootController.NeedShoot = false;
+            ShootController.NeedReload = false;
             
             _shootDelayTask = UniTask.Delay(TimeSpan.FromMilliseconds(_shootingDelay), DelayType.DeltaTime, PlayerLoopTiming.Update, Application.exitCancellationToken).ToAsyncLazy();
             await _shootDelayTask.Task;
